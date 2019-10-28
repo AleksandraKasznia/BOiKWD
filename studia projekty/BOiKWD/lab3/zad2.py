@@ -6,9 +6,8 @@ A = np.array([[1, 7, 3], [1/7, 1, 2], [1/3, 1/2, 1]])
 B = np.array([[1, 1/5, 7, 1], [5, 1, 1/2, 2], [1/7, 2, 1, 3], [1, 1/2, 1/3, 1]])
 C = np.array([[1, 2, 5, 1, 7], [1/2, 1, 3, 1/2, 5], [1/5, 1/3, 1, 1/5, 2],
               [1, 2, 5, 1, 7], [1/7, 1/5, 1/2, 1/7, 1]])
-test = np.array([[1, 3, 1/2, 5], [1/3, 1, 1/6, 2], [2, 6, 1, 9], [1/5, 1/2, 1/9, 1]])
 
-listOfMatrices = [A, B, C, test]
+listOfMatrices = [A, B, C]
 listOfSattyIndexes = []
 listOfGeomIndexes = []
 listOfKocIndexes = []
@@ -16,9 +15,10 @@ listOfVectors = []
 
 for i in listOfMatrices:
     e_values, e_vectors = np.linalg.eig(i)
-    index = (e_values.max() - len(i)) / (len(i) - 1)
+    index = (max(e_values) - len(i)) / (len(i) - 1)
     listOfSattyIndexes.append(index)
 
+print("Indeks Satty'ego")
 print(listOfSattyIndexes)
 
 # geometryczny
@@ -27,7 +27,7 @@ for i in listOfMatrices:
     vector = []
     for j in range(len(i)):
         val = np.prod(i[j])
-        val = val**(1.0/len(listOfMatrices[0]))
+        val = val**(1.0/len(i))
         vector.append(val)
     vector /= np.sum(vector)
     listOfVectors.append(vector)
@@ -45,6 +45,7 @@ for m in range(len(listOfMatrices)):
     index *= summ
     listOfGeomIndexes.append(index)
 
+print("Indeks geometryczny")
 print(listOfGeomIndexes)
 
 # koczkodaja
@@ -61,6 +62,7 @@ for i in listOfMatrices:
         koczkodaj.append(val)
     listOfKocIndexes.append(max(koczkodaj))
 
+print("Indeks Koczkodaja")
 print(listOfKocIndexes)
 
 

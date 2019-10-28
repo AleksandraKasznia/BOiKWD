@@ -48,7 +48,7 @@ for i in range(len(listOfVectors)):
     sum3 += listOfVectors[i][2]
 
 print(sum1, sum2, sum3)
-print(sum1+sum2+sum3)
+
 print("Ranking domów")
 
 if sum1 > sum2:
@@ -67,3 +67,16 @@ else:
             print("dom2\ndom3\ndom1")
         else:
             print("dom2\ndom1\ndom3")
+
+# porównanie
+print("wyniki poprzedniej metody")
+print("(0.34634713491642655+0j) (0.36914035033084974+0j) (0.2845125147527239+0j)")
+print("wyniki tej metody")
+print(sum1, sum2, sum3)
+print("MSE obu metod:")
+
+stare = [0.34634713491642655, 0.36914035033084974, 0.2845125147527239+0j]
+nowe = [sum1, sum2, sum3]
+
+error = np.square(np.subtract(stare, nowe)).mean()
+print(error)
